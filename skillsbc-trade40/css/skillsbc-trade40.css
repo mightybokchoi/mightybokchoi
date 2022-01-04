@@ -1,0 +1,512 @@
+body {
+	background-color: #f5f5f5;
+}
+
+
+/* DIVIDER */
+
+#top-gradient {
+	width: 100%;
+    height: 4px;
+    background: #ed1c24; /* For browsers that do not support gradients */    
+    background: -webkit-linear-gradient(left, #ed1c24 , #0060a7, #008a4b, #ffd530); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #ed1c24 , #0060a7, #008a4b, #ffd530); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #ed1c24 , #0060a7, #008a4b, #ffd530); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #ed1c24 , #0060a7, #008a4b, #ffd530); /* Standard syntax (must be last) */
+}
+
+
+/* LANDING */
+
+#landing {
+  width: 100%;
+  max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	background-image:url('../images/landing-background.jpg'); 
+	background-size:cover; 
+	text-align: center;
+}
+
+.landing-shadow {
+  height: 69px;
+  background-image: url(../images/landing-shadow.png);
+  background-repeat: no;
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+#skills-header {
+  width: 100%;
+  background-color: transparent;
+  z-index: 1;
+  position: absolute;
+  left:50%;
+  padding: 20px;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.logo-skills {
+  width: 190px;
+}
+
+.logo-skills-small {
+  width: 150px;
+}
+
+#page-title {
+  margin: 170px auto 130px auto;
+  z-index: 100;
+}
+
+#page-title a {
+  margin-top: 35px;
+}
+
+#page-title > h1 {
+  color: #fff;
+}
+
+#landing-download-button a {
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 3px;
+  color: #fff;
+  cursor: pointer;
+  vertical-align: middle;
+  border-radius: 3px;
+  padding: 15px 25px;
+  margin: 35px auto 0 auto;
+  background-color: #ed1c24;
+  box-shadow: 0 4px 0 #b40007;
+  position: relative;
+  z-index: 5;
+}
+
+#landing-download-button a:hover {
+  background-color: #b40007;
+  box-shadow: 0 4px 0 #ed1c24;
+  position: relative;
+  z-index: 5;
+}
+
+.landing-arrow {
+  width: 26px;
+  margin: 0 auto 30px auto;
+  position: relative;
+  z-index: 5;
+}
+
+.landing-arrow:hover {
+  opacity: 0.7;
+}
+
+
+/* MAIN NAVIGATION */
+
+#main-nav > li {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+	display: inline-block;
+	color: #fff;
+	margin: 63px 0 0 35px;
+  z-index: 99;
+}
+
+#main-nav > li a {
+  color: #fff;
+}
+
+#main-nav > li a:hover {
+  color: #bbb;
+}
+
+
+/* MOBILE NAVIGATION */
+
+a.icon-hamburger {
+  position: absolute;
+  top: 24px;
+  right: 20px;
+  width: 30px;
+}
+
+a.icon-hamburger:hover {
+ opacity: 0.7;
+}
+
+a.icon-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  width: 22px;
+}
+
+a.icon-close:hover {
+ opacity: 0.7;
+}
+
+.submenu{
+  display: none;
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(0,0,0,0.75);
+}
+
+ul.menu-list {
+  padding-top: 60px;
+  margin: 0;
+}
+
+ul.menu-list li {
+  list-style: none;
+  text-align: center;
+}
+
+ul.menu-list li p {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+ul.menu-list li a.nav-item {
+  width: 100%;
+  color: #fff;
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+
+ul.menu-list li a.nav-item:hover {
+  color: #fff;
+  display: block;
+  background: #fff;
+  background-color: rgba(50,50,50,0.75);
+}
+
+
+/* PHOTOGRAPHY */
+
+#photo-area {
+	max-width: 100%;
+	margin-top: 49px;
+  	margin-left: auto;
+  	margin-right: auto;
+  	background-size:cover; 
+  	text-align: center;
+}
+
+#competition-photo,
+#competition-photo-small {
+	padding: 0;
+	margin: 0;
+}
+
+#competition-photo {
+  width: 8 columns;
+}
+
+#competition-photo-small {
+  width: 4 columns;
+}
+
+
+/* INTRODUCTION */
+
+#page-title h1.landing-graphic-design {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 54px;
+  font-weight: 400;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+#page-title h1.landing-graphic-design-small {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 43px;
+  font-weight: 400;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+#page-title  h1.landing-trade40 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+#page-title  h1.landing-competitor-packages {
+  font-family: 'PT Serif', serif;
+  font-size: 24px;
+  font-weight: 400;
+  font-style: italic;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+#skills-introduction-10px-padding {
+	padding: 0 30px;
+}
+
+#skills-introduction-no-padding
+ {
+  padding: 0 20px;
+}
+
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 48px;
+  font-weight: 100;
+  color: #000;
+  padding: 0;
+  margin: 49px 0 31px 0;
+}
+
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #000;
+  padding: 0;
+  margin: 0 0 7px 0;
+}
+
+p {
+  font-family: 'PT Serif', serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #000;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+p.last,
+.bullets .last {
+  margin: 0 0 38px 0;
+}
+
+.bullets {
+  font-family: 'PT Serif', serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #000;
+}
+
+
+/* DOWNLOAD */
+
+#download-10px-padding {
+  padding: 0 10px;
+}
+
+#package-download {
+	padding: 0 20px;
+}
+
+#project-box-small {
+  display: inline-block;
+}
+
+#project-box-small > img {
+  float: left;
+  }
+
+.project-info > h3 {
+  float: right;
+}
+
+#project-box-small > a {
+  float: left;
+}
+
+.project-box-big {
+	width: 100%;
+	border: 1px solid #ddd;
+	padding: 32px 10px;
+  margin: 0 0 15px 0;
+	display: inline-block;
+}
+
+.project-box-big img.pdf-download {
+  width:80%;
+  display: block;
+  margin: 0 auto;
+}
+
+.project-box-big .project-description h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: #000;
+  padding: 0;
+  margin: 25px 0 7px 0;
+}
+
+.project-box-big .project-description p {
+  font-family: 'PT Serif', serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23px;
+  text-align: center;
+  color: #000;
+}
+
+.project-box-small {
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 0 0 20px 0;
+}
+
+.project-box-small img.pdf-download {
+  width:80%;
+  margin: 0 20px 20px 0;
+  float: left;
+}
+
+.project-box-small .project-description {
+  width: 130%;
+}
+
+.project-box-small .project-description h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: #000;
+  padding: 0;
+  margin: -5px 0 7px 0;
+}
+
+.project-box-small .project-description p {
+  font-family: 'PT Serif', serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23px;
+  text-align: left;
+  color: #000;
+  margin: 0 0 15px 0;
+}
+
+.project-box-small .pdf-download {
+  width:80%;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+a:hover .pdf-download {
+  opacity: 0.7;
+}
+
+#download-button a {
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 3px;
+  color: #fff;
+  cursor: pointer;
+  vertical-align: middle;
+  border-radius: 3px;
+  padding: 15px 0;
+  margin: 0 auto;
+  background-color: #ed1c24;
+  box-shadow: 0 4px 0 #b40007;
+}
+
+#download-button a:hover {
+    background-color: #b40007;
+    box-shadow: 0 4px 0 #ed1c24;
+}
+
+
+a.body-link {
+  color: #000;
+  text-decoration: underline;
+  text-transform: none;
+}
+
+a.body-link:hover {
+  color: #999;
+}
+
+span.body-bold {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+
+/* FOOTER */
+
+#footer {
+  padding: 0 20px;
+}
+
+.footer-border {
+    border-top: solid 1px #ddd;
+    margin: 30px 0 22px 0;
+}
+
+.logo-5am {
+  width: 61px;
+  display: inline-block;
+  float: left;
+  margin: 0 0 22px 0;
+}
+
+.copyrights {
+  display: inline-block;
+  float: right;
+}
+
+p.copyrights {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #000;
+  padding: 0;
+  margin: -10px 0 0 0;
+}
