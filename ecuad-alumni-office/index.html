@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Reimagining the ECUAD Alumni Office | Shawn Choi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Side Navigation */
+        .side-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: #fff;
+            border-right: 1px solid #e5e5e5;
+            z-index: 1000;
+            padding: 2rem 1.5rem;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .side-nav.open {
+            transform: translateX(0);
+        }
+
+        .side-nav-logo {
+            margin-bottom: 2rem;
+        }
+
+        .side-nav-logo img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .side-nav-logo .logo-placeholder {
+            width: 120px;
+            height: 40px;
+            background: #f5f5f5;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #999;
+            border-radius: 4px;
+        }
+
+        .side-nav ul {
+            list-style: none;
+        }
+
+        .side-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #666;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .side-nav a:hover,
+        .side-nav a.active {
+            background: #f5f5f5;
+            color: #1a1a2e;
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hamburger {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1001;
+            width: 44px;
+            height: 44px;
+            background: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .main-content {
+            transition: margin-left 0.3s ease;
+        }
+
+        @media (min-width: 992px) {
+            .side-nav {
+                transform: translateX(0);
+                width: 280px;
+            }
+
+            .hamburger {
+                display: none;
+            }
+
+            .nav-overlay {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 280px;
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem 1rem;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: grayscale(100%);
+            opacity: 0.3;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 em {
+            font-family: 'Source Serif 4', serif;
+            font-style: italic;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .hero .byline {
+            font-size: clamp(0.85rem, 1.5vw, 1.2rem);
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero .byline a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .hero .byline a:hover {
+            opacity: 0.8;
+        }
+
+        /* Frustration Section */
+        .frustration-section {
+            padding: 4rem 1rem;
+            background: #f5f5f5;
+        }
+
+        .frustration-section h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .frustration-section .intro {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.25rem;
+            border: 2px solid #1a1a2e;
+            background: #fff;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: #1a1a2e;
+            color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .tab-content blockquote {
+            font-style: italic;
+            color: #666;
+            border-left: 4px solid #1a1a2e;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .tab-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem;
+            color: #333;
+        }
+
+        .tab-content ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            color: #444;
+        }
+
+        .tab-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Solutions Section */
+        .solutions-section {
+            padding: 4rem 1rem;
+            background: #fff;
+        }
+
+        .solutions-section h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .solutions-section .intro {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.25rem;
+            border: 2px solid #1a1a2e;
+            background: #fff;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #1a1a2e;
+            color: #fff;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .solutions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .solutions-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .solution-card {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .solution-card.hidden {
+            display: none;
+        }
+
+        .solution-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #1a1a2e;
+        }
+
+        .solution-card p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .solution-card .category-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Lifecycle Section */
+        .lifecycle-section {
+            padding: 4rem 1rem;
+            background: #f5f5f5;
+        }
+
+        .lifecycle-section h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .lifecycle-section .intro {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+
+        .lifecycle-steps {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .lifecycle-steps {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .lifecycle-step {
+            padding: 1rem 0.5rem;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid #ddd;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            color: #666;
+        }
+
+        .lifecycle-step:hover {
+            color: #1a1a2e;
+        }
+
+        .lifecycle-step.active {
+            color: #1a1a2e;
+            border-bottom-color: #1a1a2e;
+        }
+
+        .lifecycle-step .step-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .lifecycle-step .step-subtitle {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .lifecycle-step.active .step-subtitle {
+            color: #1a1a2e;
+        }
+
+        .lifecycle-content {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .lifecycle-content .content-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .lifecycle-content .stage-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+        }
+
+        .lifecycle-content .stage-focus {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 0.75rem;
+        }
+
+        .lifecycle-content .stage-goal {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .lifecycle-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .lifecycle-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .lifecycle-main {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .lifecycle-left .needs-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 0.75rem;
+        }
+
+        .lifecycle-left ul {
+            list-style: disc;
+            padding-left: 1.25rem;
+            color: #333;
+        }
+
+        .lifecycle-left li {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .lifecycle-right {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #eee;
+        }
+
+        .lifecycle-right .offer-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+
+        .lifecycle-right .offer-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .lifecycle-right .kpi-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+
+        .lifecycle-right .kpi-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+
+        /* Mobile first breakpoints */
+        @media (min-width: 576px) {
+            /* Small devices */
+        }
+
+        @media (min-width: 768px) {
+            /* Medium devices */
+        }
+
+        @media (min-width: 992px) {
+            /* Large devices */
+        }
+
+        @media (min-width: 1200px) {
+            /* Extra large devices */
+        }
+    </style>
+</head>
+<body>
+    <!-- Side Navigation -->
+    <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="nav-overlay" id="nav-overlay"></div>
+    <nav class="side-nav" id="side-nav">
+        <div class="side-nav-inner">
+            <div class="side-nav-logo">
+                <!-- Replace with: <img src="logo.svg" alt="Logo"> -->
+                <div class="logo-placeholder">Logo</div>
+            </div>
+            <ul>
+            <li><a href="#hero" class="nav-link active">Introduction</a></li>
+            <li><a href="#frustration" class="nav-link">1. Frustration Landscape</a></li>
+            <li><a href="#solutions" class="nav-link">2. Solutions Hub</a></li>
+            <li><a href="#lifecycle" class="nav-link">3. Engagement Lifecycle</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+    <section class="hero" id="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="video/background.mp4" type="video/mp4">
+        </video>
+        <div class="container">
+            <h1>From <em>Association</em> to <em>Agency</em></h1>
+            <p class="subtitle">A strategic blueprint to transform the ECUAD alumni office from a fundraising silo into a lifelong talent agent for creative practitioners.</p>
+            <p class="byline">🔗 By <a href="https://www.5am.co/" target="_blank">Shawn Choi</a></p>
+        </div>
+    </section>
+
+    <section class="frustration-section" id="frustration">
+        <div class="container">
+            <h2>1. The Frustration Landscape</h2>
+            <p class="intro">Breakdown of primary complaints from I've been hearing. Click the list items to explore the qualitative feedback behind the numbers.</p>
+            
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="solicitation">💰 Solicitation</button>
+                <button class="tab-btn" data-tab="career">💼 Career Support</button>
+                <button class="tab-btn" data-tab="communication">📢 Communication</button>
+                <button class="tab-btn" data-tab="networking">🤝 Networking</button>
+                <button class="tab-btn" data-tab="ux">⚙️ UX/Process</button>
+            </div>
+
+            <div class="tab-content active" id="solicitation">
+                <h3>Solicitation Fatigue</h3>
+                <blockquote>"Every email feels like it's asking for money before offering any value."</blockquote>
+                <h4>Core Issues</h4>
+                <ul>
+                    <li>Donation requests sent too frequently</li>
+                    <li>Lack of transparency on fund allocation</li>
+                    <li>No clear value proposition for donors</li>
+                </ul>
+            </div>
+
+            <div class="tab-content" id="career">
+                <h3>Career Support Gaps</h3>
+                <blockquote>"I graduated years ago and still haven't received any meaningful career resources."</blockquote>
+                <h4>Core Issues</h4>
+                <ul>
+                    <li>No job board or industry connections</li>
+                    <li>Mentorship programs are non-existent</li>
+                    <li>Skills workshops not offered post-graduation</li>
+                </ul>
+            </div>
+
+            <div class="tab-content" id="communication">
+                <h3>Communication Breakdown</h3>
+                <blockquote>"I don't know what's happening at ECU unless I actively search for it."</blockquote>
+                <h4>Core Issues</h4>
+                <ul>
+                    <li>Newsletters feel generic and impersonal</li>
+                    <li>Important updates buried in noise</li>
+                    <li>No segmentation based on interests</li>
+                </ul>
+            </div>
+
+            <div class="tab-content" id="networking">
+                <h3>Networking Void</h3>
+                <blockquote>"There's no easy way to connect with other alumni in my field."</blockquote>
+                <h4>Core Issues</h4>
+                <ul>
+                    <li>No alumni directory or platform</li>
+                    <li>Events are rare and poorly promoted</li>
+                    <li>Regional chapters don't exist</li>
+                </ul>
+            </div>
+
+            <div class="tab-content" id="ux">
+                <h3>UX/Process Friction</h3>
+                <blockquote>"The website is confusing and I can never find what I need."</blockquote>
+                <h4>Core Issues</h4>
+                <ul>
+                    <li>Outdated and clunky website interface</li>
+                    <li>Multiple logins required for different services</li>
+                    <li>Forms are lengthy and redundant</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="solutions-section" id="solutions">
+        <div class="container">
+            <h2>2. Strategic Solutions Hub</h2>
+            <p class="intro">Select a complaint category below to reveal specific, actionable solutions to address the root causes of disengagement.</p>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Solutions</button>
+                <button class="filter-btn" data-filter="money">💰 Fundraising</button>
+                <button class="filter-btn" data-filter="career">💼 Career Services</button>
+                <button class="filter-btn" data-filter="comms">📢 Communication</button>
+                <button class="filter-btn" data-filter="network">🤝 Networking</button>
+            </div>
+
+            <div class="solutions-grid" id="solutions-grid">
+                <!-- Cards injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <section class="lifecycle-section" id="lifecycle">
+        <div class="container">
+            <h2>3. The New Engagement Lifecycle</h2>
+            <p class="intro">Moving away from a "one-size-fits-all" approach, we propose a tailored value proposition that evolves with the alumni's career journey. Click the stages below to see how ECUAD serves alumni at each step.</p>
+            
+            <div class="lifecycle-steps">
+                <button class="lifecycle-step active" data-step="0">
+                    <div class="step-title">Graduation</div>
+                    <div class="step-subtitle">Transition (0-2 Yrs)</div>
+                </button>
+                <button class="lifecycle-step" data-step="1">
+                    <div class="step-title">Early Career</div>
+                    <div class="step-subtitle">Establishment (2-10 Yrs)</div>
+                </button>
+                <button class="lifecycle-step" data-step="2">
+                    <div class="step-title">Mid-Career</div>
+                    <div class="step-subtitle">Expansion (10-25 Yrs)</div>
+                </button>
+                <button class="lifecycle-step" data-step="3">
+                    <div class="step-title">Legacy</div>
+                    <div class="step-subtitle">Leadership (25+ Yrs)</div>
+                </button>
+            </div>
+
+            <div class="lifecycle-content" id="lifecycle-content">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <script>
+        // Side navigation toggle
+        const hamburger = document.getElementById('hamburger');
+        const sideNav = document.getElementById('side-nav');
+        const navOverlay = document.getElementById('nav-overlay');
+
+        function toggleNav() {
+            hamburger.classList.toggle('open');
+            sideNav.classList.toggle('open');
+            navOverlay.classList.toggle('open');
+        }
+
+        hamburger.addEventListener('click', toggleNav);
+        navOverlay.addEventListener('click', toggleNav);
+
+        // Close nav on link click (mobile) and set active state
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                if (window.innerWidth < 992) {
+                    toggleNav();
+                }
+            });
+        });
+
+        // Tab switching for frustration section
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Solutions data
+        const solutionsData = [
+            { category: "money", title: "The 3-to-1 Rule", desc: "Commit to sending 3 value-add emails (news, invites, stories) for every 1 solicitation email." },
+            { category: "money", title: "Impact Reporting", desc: "Show exactly where the money goes. 'Your $50 bought 10 lab coats' vs 'Support the Annual Fund'." },
+            { category: "career", title: "Lifetime Career Access", desc: "Extend career center privileges to alumni for life, or at least 5-10 years post-grad." },
+            { category: "career", title: "Alumni Job Board", desc: "Curate a job board where alumni can hire other alumni. High trust, high relevance." },
+            { category: "comms", title: "Smart Segmentation", desc: "Segment lists by Grad Year, Major, and Interest. Send tech news to Engineering grads, not English grads." },
+            { category: "comms", title: "Opt-Down Options", desc: "Allow users to choose 'Newsletter Only' or 'Events Only' instead of a global Unsubscribe." },
+            { category: "network", title: "Industry Verticals", desc: "Create micro-communities (e.g., 'Alumni in Finance', 'Alumni in Arts') rather than generic regional clubs." },
+            { category: "network", title: "Structured Networking", desc: "Host 'Speed Networking' or guided roundtable events so introverts can participate easily." },
+            { category: "money", title: "Micro-Giving Days", desc: "Focus on participation over amount. 'Buy a coffee for a student' campaigns ($5) to build habits." }
+        ];
+
+        const categoryLabels = {
+            money: "Fundraising",
+            career: "Career Services",
+            comms: "Communication",
+            network: "Networking"
+        };
+
+        // Render solutions
+        function renderSolutions() {
+            const grid = document.getElementById('solutions-grid');
+            grid.innerHTML = solutionsData.map(item => `
+                <div class="solution-card" data-category="${item.category}">
+                    <span class="category-tag">${categoryLabels[item.category]}</span>
+                    <h3>${item.title}</h3>
+                    <p>${item.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        // Filter solutions
+        function filterSolutions(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.filter === category);
+            });
+
+            document.querySelectorAll('.solution-card').forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // Filter button clicks
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => filterSolutions(btn.dataset.filter));
+        });
+
+        // Initialize
+        renderSolutions();
+
+        // Lifecycle data
+        const lifecycleData = [
+            {
+                stage: "Graduation (0-2 Years)",
+                focus: "Transition & Survival",
+                goal: "Bridge the gap between studio and industry.",
+                needs: ["Portfolio review", "Contract negotiation skills", "Access to software/facilities"],
+                offer: "Provide 'Alumni Bootcamp' workshops and 1-year extended Library access.",
+                kpi: "Email update rate: 80%"
+            },
+            {
+                stage: "Early Career (2-10 Years)",
+                focus: "Establishment & Gigs",
+                goal: "Help them secure work and build reputation.",
+                needs: ["Job board access", "Grant writing support", "Exhibition opportunities"],
+                offer: "Curated 'Creative Careers' newsletter and 'ECUAD Connects' mixer events.",
+                kpi: "Event attendance: 300/yr"
+            },
+            {
+                stage: "Mid-Career (10-25 Years)",
+                focus: "Expansion & Hiring",
+                goal: "Engage them as partners and employers.",
+                needs: ["Talent pipeline (hiring grads)", "Professional development", "Re-skilling"],
+                offer: "Exclusive masterclasses and 'Hire a Grad' portal access.",
+                kpi: "Mentorship signups: 50"
+            },
+            {
+                stage: "Legacy (25+ Years)",
+                focus: "Leadership & Giving",
+                goal: "Cement their legacy within the institution.",
+                needs: ["Recognition of lifetime achievement", "Philanthropic avenues", "Board roles"],
+                offer: "VIP Gallery previews, Honorary Fellowships, Named Scholarships.",
+                kpi: "Major gifts identified: 5"
+            }
+        ];
+
+        // Render lifecycle content
+        function renderLifecycle(index) {
+            const data = lifecycleData[index];
+            const needsList = data.needs.map(n => `<li>${n}</li>`).join('');
+            const content = document.getElementById('lifecycle-content');
+            content.innerHTML = `
+                <div class="lifecycle-layout">
+                    <div class="lifecycle-main">
+                        <div class="content-header">
+                            <div class="stage-title">${data.stage}</div>
+                            <div class="stage-focus">${data.focus}</div>
+                            <div class="stage-goal">${data.goal}</div>
+                        </div>
+                        <div class="lifecycle-left">
+                            <div class="needs-label">Primary Needs</div>
+                            <ul>${needsList}</ul>
+                        </div>
+                    </div>
+                    <div class="lifecycle-right">
+                        <div class="offer-label">Our Value Prop (Offer)</div>
+                        <div class="offer-value">${data.offer}</div>
+                        <div class="kpi-label">Success Metric</div>
+                        <div class="kpi-value">${data.kpi}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Lifecycle step clicks
+        document.querySelectorAll('.lifecycle-step').forEach(step => {
+            step.addEventListener('click', () => {
+                document.querySelectorAll('.lifecycle-step').forEach(s => s.classList.remove('active'));
+                step.classList.add('active');
+                renderLifecycle(parseInt(step.dataset.step));
+            });
+        });
+
+        // Initialize lifecycle
+        renderLifecycle(0);
+    </script>
+</body>
+</html>
+
+
