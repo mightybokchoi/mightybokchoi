@@ -3,945 +3,1243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Reimagining the ECUAD Alumni Office | Shawn Choi</title>
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="googlebot" content="noindex, nofollow, noarchive">
+    <meta name="bingbot" content="noindex, nofollow, noarchive">
+    <meta name="description" content="ECUAD Alumni Office Strategic Briefing">
+    <title>ECUAD Alumni Office - Strategic Briefing</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Source Sans 3', sans-serif;
-            line-height: 1.6;
-        }
-
-        /* Side Navigation */
-        .side-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 80%;
-            max-width: 320px;
-            height: 100vh;
-            background: #fff;
-            border-right: 1px solid #e5e5e5;
-            z-index: 1000;
-            padding: 2rem 1.5rem;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .side-nav.open {
-            transform: translateX(0);
-        }
-
-        .side-nav-logo {
-            margin-bottom: 2rem;
-        }
-
-        .side-nav-logo img {
-            max-width: 120px;
-            height: auto;
-        }
-
-        .side-nav-logo .logo-placeholder {
-            width: 120px;
-            height: 40px;
-            background: #f5f5f5;
-            border: 2px dashed #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            color: #999;
-            border-radius: 4px;
-        }
-
-        .side-nav ul {
-            list-style: none;
-        }
-
-        .side-nav li {
-            margin-bottom: 0.5rem;
-        }
-
-        .side-nav a {
-            display: block;
-            padding: 0.75rem 1rem;
-            color: #666;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            font-size: 0.95rem;
-        }
-
-        .side-nav a:hover,
-        .side-nav a.active {
-            background: #f5f5f5;
-            color: #1a1a2e;
-        }
-
-        .nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .nav-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .hamburger {
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            z-index: 1001;
-            width: 44px;
-            height: 44px;
-            background: #1a1a2e;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 20px;
-            height: 2px;
-            background: #fff;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.open span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.open span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.open span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        .main-content {
-            transition: margin-left 0.3s ease;
-        }
-
-        @media (min-width: 992px) {
-            .side-nav {
-                transform: translateX(0);
-                width: 280px;
-            }
-
-            .hamburger {
-                display: none;
-            }
-
-            .nav-overlay {
-                display: none;
-            }
-
-            .main-content {
-                margin-left: 280px;
-            }
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .hero {
-            position: relative;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem 1rem;
-            background: #000;
-            color: #fff;
-            overflow: hidden;
-        }
-
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            filter: grayscale(100%);
-            opacity: 0.3;
-            object-fit: cover;
-            z-index: 0;
-        }
-
-        .hero .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .hero h1 em {
-            font-family: 'Source Serif 4', serif;
-            font-style: italic;
-        }
-
-        .hero .subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.5rem);
-            max-width: 700px;
-            margin: 0 auto 1.5rem;
-            opacity: 0.9;
-            line-height: 1.7;
-        }
-
-        .hero .byline {
-            font-size: clamp(0.85rem, 1.5vw, 1.2rem);
-            opacity: 0.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero .byline a {
-            color: #fff;
-            text-decoration: underline;
-        }
-
-        .hero .byline a:hover {
-            opacity: 0.8;
-        }
-
-        /* Frustration Section */
-        .frustration-section {
-            padding: 4rem 1rem;
-            background: #f5f5f5;
-        }
-
-        .frustration-section h2 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #1a1a2e;
-        }
-
-        .frustration-section .intro {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 2rem;
-            max-width: 700px;
-        }
-
-        .tab-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-        }
-
-        .tab-btn {
-            padding: 0.75rem 1.25rem;
-            border: 2px solid #1a1a2e;
-            background: #fff;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .tab-btn:hover,
-        .tab-btn.active {
-            background: #1a1a2e;
-            color: #fff;
-        }
-
-        .tab-content {
-            display: none;
-            background: #fff;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .tab-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #1a1a2e;
-        }
-
-        .tab-content blockquote {
-            font-style: italic;
-            color: #666;
-            border-left: 4px solid #1a1a2e;
-            padding-left: 1rem;
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-        }
-
-        .tab-content h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 1.5rem 0 0.75rem;
-            color: #333;
-        }
-
-        .tab-content ul {
-            list-style: disc;
-            padding-left: 1.5rem;
-            color: #444;
-        }
-
-        .tab-content li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Solutions Section */
-        .solutions-section {
-            padding: 4rem 1rem;
-            background: #fff;
-        }
-
-        .solutions-section h2 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #1a1a2e;
-        }
-
-        .solutions-section .intro {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 2rem;
-            max-width: 700px;
-        }
-
-        .filter-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-        }
-
-        .filter-btn {
-            padding: 0.75rem 1.25rem;
-            border: 2px solid #1a1a2e;
-            background: #fff;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: #1a1a2e;
-            color: #fff;
-        }
-
-        .solutions-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .solutions-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 992px) {
-            .solutions-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .solution-card {
-            background: #f5f5f5;
-            padding: 1.5rem;
-            border-radius: 12px;
-        }
-
-        .solution-card.hidden {
-            display: none;
-        }
-
-        .solution-card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: #1a1a2e;
-        }
-
-        .solution-card p {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .solution-card .category-tag {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Lifecycle Section */
-        .lifecycle-section {
-            padding: 4rem 1rem;
-            background: #f5f5f5;
-        }
-
-        .lifecycle-section h2 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #1a1a2e;
-        }
-
-        .lifecycle-section .intro {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 2rem;
-            max-width: 700px;
-        }
-
-        .lifecycle-steps {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0;
-            margin-bottom: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .lifecycle-steps {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        .lifecycle-step {
-            padding: 1rem 0.5rem;
-            text-align: center;
-            background: transparent;
-            border: none;
-            border-bottom: 3px solid #ddd;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: inherit;
-            color: #666;
-        }
-
-        .lifecycle-step:hover {
-            color: #1a1a2e;
-        }
-
-        .lifecycle-step.active {
-            color: #1a1a2e;
-            border-bottom-color: #1a1a2e;
-        }
-
-        .lifecycle-step .step-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        .lifecycle-step .step-subtitle {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-
-        .lifecycle-step.active .step-subtitle {
-            color: #1a1a2e;
-        }
-
-        .lifecycle-content {
-            background: #fff;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-
-        .lifecycle-content .content-header {
-            margin-bottom: 1.5rem;
-        }
-
-        .lifecycle-content .stage-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 0.5rem;
-        }
-
-        .lifecycle-content .stage-focus {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #555;
-            margin-bottom: 0.75rem;
-        }
-
-        .lifecycle-content .stage-goal {
-            font-size: 1rem;
-            color: #555;
-        }
-
-        .lifecycle-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .lifecycle-layout {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .lifecycle-main {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .lifecycle-left .needs-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 0.75rem;
-        }
-
-        .lifecycle-left ul {
-            list-style: disc;
-            padding-left: 1.25rem;
-            color: #333;
-        }
-
-        .lifecycle-left li {
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-
-        .lifecycle-right {
-            background: #fff;
-            border-radius: 8px;
-            padding: 1.5rem;
-            border: 1px solid #eee;
-        }
-
-        .lifecycle-right .offer-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 0.5rem;
-        }
-
-        .lifecycle-right .offer-value {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1a1a2e;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        .lifecycle-right .kpi-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 0.5rem;
-        }
-
-        .lifecycle-right .kpi-value {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #1a1a2e;
-        }
-
-        /* Mobile first breakpoints */
-        @media (min-width: 576px) {
-            /* Small devices */
-        }
-
-        @media (min-width: 768px) {
-            /* Medium devices */
-        }
-
-        @media (min-width: 992px) {
-            /* Large devices */
-        }
-
-        @media (min-width: 1200px) {
-            /* Extra large devices */
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;900&family=Source+Serif+4:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Side Navigation -->
-    <button class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <div class="nav-overlay" id="nav-overlay"></div>
-    <nav class="side-nav" id="side-nav">
-        <div class="side-nav-inner">
-            <div class="side-nav-logo">
-                <!-- Replace with: <img src="logo.svg" alt="Logo"> -->
-                <div class="logo-placeholder">Logo</div>
+    <!-- Mobile Top Bar -->
+    <header class="mobile-header" role="banner">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </button>
+        <div class="mobile-branding">
+            <span class="brand-text">Observations on the ECUAD Alumni Experience</span>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Navigation -->
+    <nav class="mobile-drawer" id="mobile-drawer" role="navigation" aria-label="Main navigation">
+        <div class="drawer-content">
+            <div class="drawer-branding">
+                <!-- Branding will be cloned from desktop sidebar -->
             </div>
-            <ul>
-            <li><a href="#hero" class="nav-link active">Introduction</a></li>
-            <li><a href="#frustration" class="nav-link">1. Frustration Landscape</a></li>
-            <li><a href="#solutions" class="nav-link">2. Solutions Hub</a></li>
-            <li><a href="#lifecycle" class="nav-link">3. Engagement Lifecycle</a></li>
+            <ul class="drawer-nav-list">
+                <!-- Navigation will be cloned from desktop sidebar -->
             </ul>
+            <div class="drawer-footer">
+                <!-- Footer will be cloned from desktop sidebar -->
+            </div>
         </div>
     </nav>
 
+    <!-- Desktop Sidebar Navigation -->
+    <aside class="desktop-sidebar" role="complementary">
+        <div class="sidebar-content">
+            <div class="sidebar-branding" id="main-sidebar-branding">
+                <div class="brand-icons">
+                    <a href="#hero" class="logo-link" aria-label="Scroll to top">
+                        <img src="images/logo-5am.svg" alt="5am" class="brand-icon brand-icon-light">
+                    </a>
+                </div>
+                <div class="brand-text-group">
+                    <h1 class="brand-title">☕️ Coffee Chat with Trish</h1>
+                    <p class="brand-subtitle">January 9, 2026</p>
+                </div>
+            </div>
+            <nav class="sidebar-nav" role="navigation" aria-label="Main navigation">
+                <ul class="nav-list" id="main-nav-list">
+                    <li><a href="#hero" class="nav-link active">
+                        Introduction
+                    </a></li>
+                    <li><a href="#voice" class="nav-link">
+                        Alumni & ECUAA Voice
+                    </a></li>
+                    <li><a href="#lifecycle" class="nav-link">
+                        Lifecycle Engagement Model
+                    </a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer" id="main-sidebar-footer">
+                <div class="contact-info">
+                    <div class="contact-avatar" aria-hidden="true">
+                        <img src="images/shawn-choi.jpg" alt="Shawn Choi">
+                    </div>
+                    <div class="contact-details">
+                        <p class="contact-name">🔗 <a href="https://www.5am.co" target="_blank" rel="noopener noreferrer">Shawn Choi</a></p>
+                        <p class="contact-title">Senator, Alumni Member</p>
+                    </div>
+                </div>
+                <div class="document-status">
+                    <span class="status-icon" aria-hidden="true">🔒</span>
+                    <span class="status-text">Internal working document. Not intended for public indexing or distribution.</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
     <!-- Main Content -->
-    <main class="main-content">
-    <section class="hero" id="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="video/background.mp4" type="video/mp4">
-        </video>
-        <div class="container">
-            <h1>From <em>Association</em> to <em>Agency</em></h1>
-            <p class="subtitle">A strategic blueprint to transform the ECUAD alumni office from a fundraising silo into a lifelong talent agent for creative practitioners.</p>
-            <p class="byline">🔗 By <a href="https://www.5am.co/" target="_blank">Shawn Choi</a></p>
+    <main class="main-content" role="main">
+        <div class="content-wrapper">
+            <!-- Hero/Intro Section -->
+            <section id="hero" class="content-section hero-section">
+                <div class="briefing-badge">
+                    <span class="badge-dot"></span>
+                    <span class="badge-text">Coffee Chat with Trish</span>
+                </div>
+                <div class="hero-content">
+                    <h1 class="hero-title">Observations on the ECUAD Alumni Experience</h1>
+                    <p class="hero-subhead">
+                        Early Insights, Patterns, and Opportunities
+                    </p>
+                    <p class="hero-description">
+                        A synthesis of alumni and ECU Alumni Association perspectives, peer observation, and systems-level thinking to explore how ECUAD might strengthen alumni engagement across the lifecycle.
+                    </p>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- Alumni Voice Section -->
+            <section id="voice" class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Alumni & ECUAA Voice</h2>
+                    <p class="hero-description">Direct insights from alumni and the ECU Alumni Association reveal core challenges, unmet needs, and opportunities to strengthen engagement across the community.</p>
+                    <div class="tabs-container">
+                        <div class="tabs">
+                            <button class="tab-button active" data-tab="alumni" aria-selected="true">Alumni</button>
+                            <button class="tab-button" data-tab="ecuaa" aria-selected="false">ECUAA</button>
+                        </div>
+                        <!-- Alumni Filter Pills -->
+                        <div class="filter-pills filter-pills-alumni active">
+                            <button class="pill active" data-category="solicitation" aria-pressed="true">Solicitation</button>
+                            <button class="pill" data-category="careersupport" aria-pressed="false">Career Support</button>
+                            <button class="pill" data-category="networking" aria-pressed="false">Networking & Mentorship Access</button>
+                            <button class="pill" data-category="disconnection" aria-pressed="false">Disconnection & Fragmentation</button>
+                            <button class="pill" data-category="recognition" aria-pressed="false">Recognition & Visibility</button>
+                            <button class="pill" data-category="communication" aria-pressed="false">One-Size-Fits-All Communication</button>
+                        </div>
+                        <!-- ECUAA Filter Pills -->
+                        <div class="filter-pills filter-pills-ecuaa">
+                            <button class="pill active" data-category="operational" aria-pressed="true">Operational Separation</button>
+                            <button class="pill" data-category="budget" aria-pressed="false">No Budget</button>
+                            <button class="pill" data-category="sponsorship" aria-pressed="false">Sponsorship Challenges</button>
+                            <button class="pill" data-category="visibility" aria-pressed="false">Limited Visibility into Alumni Outcomes (Domestic & International)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alumni Tab Content -->
+                <div class="tab-panel active" data-panel="alumni">
+                    <!-- Solicitation -->
+                    <div class="category-panel active" data-category-panel="alumni-solicitation">
+                        <div class="content-card">
+                            <div class="tldr-box">
+                                <span class="tldr-icon">ℹ️</span>
+                                <p class="tldr-text"><strong>TL;DR:</strong> Alumni experience outreach as transactional, with little perceived value before financial asks.</p>
+                            </div>
+                            <div class="card-content">
+                                <blockquote class="quote-block">
+                                    <p class="quote-text">"The only time I hear from the university is when I’m asked for money."</p>
+                                </blockquote>
+                                <div class="issues-solutions">
+                                    <div class="issues-section">
+                                        <h3 class="section-heading">Core Issues</h3>
+                                        <ul class="issue-list">
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Fundraising precedes relationship-building</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Limited transparency on impact</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Career stage and capacity are not considered</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="solutions-section">
+                                        <h3 class="section-heading">Actionable Solutions</h3>
+                                        <div class="solutions-grid">
+                                            <div class="solution-card">
+                                                <div class="solution-icon">💬</div>
+                                                <h4 class="solution-title">Value-First Communications</h4>
+                                                <p class="solution-description">Lead alumni engagement with resources, stories, and opportunities before any financial request.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🎯</div>
+                                                <h4 class="solution-title">Segmented Giving Journeys</h4>
+                                                <p class="solution-description">Align solicitation timing and messaging with alumni career stage and engagement history.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">📊</div>
+                                                <h4 class="solution-title">Impact Transparency Cards</h4>
+                                                <p class="solution-description">Clearly show how alumni contributions translate into tangible outcomes.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧭</div>
+                                                <h4 class="solution-title">Opt-In Engagement Paths</h4>
+                                                <p class="solution-description">Let alumni choose how and when they want to support the institution.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🤝</div>
+                                                <h4 class="solution-title">Relationship Owners</h4>
+                                                <p class="solution-description">Assign stewardship so alumni build trust with people, not automated systems.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Career Support -->
+                    <div class="category-panel" data-category-panel="alumni-careersupport">
+                        <div class="content-card">
+                            <div class="tldr-box">
+                                <span class="tldr-icon">ℹ️</span>
+                                <p class="tldr-text"><strong>TL;DR:</strong> Alumni feel unprepared and unsupported in navigating creative careers after graduation.</p>
+                            </div>
+                            <div class="card-content">
+                                <blockquote class="quote-block">
+                                    <p class="quote-text">"I was trained creatively, but not professionally."</p>
+                                </blockquote>
+                                <div class="issues-solutions">
+                                    <div class="issues-section">
+                                        <h3 class="section-heading">Core Issues</h3>
+                                        <ul class="issue-list">
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Weak student-to-alumni career transition</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Limited job visibility and guidance</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Freelance and international gaps 뭔 말이고? 무슨 소리야?</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="solutions-section">
+                                        <h3 class="section-heading">Actionable Solutions</h3>
+                                        <div class="solutions-grid">
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🚀</div>
+                                                <h4 class="solution-title">Alumni Career Launchpad</h4>
+                                                <p class="solution-description">Create a dedicated alumni-facing career hub distinct from student services.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🌍</div>
+                                                <h4 class="solution-title">Global Alumni Job Board</h4>
+                                                <p class="solution-description">Aggregate relevant roles, gigs, residencies, and opportunities worldwide.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧵</div>
+                                                <h4 class="solution-title">Industry Micro-Networks</h4>
+                                                <p class="solution-description">Enable discipline-specific peer learning and opportunity sharing.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">📅</div>
+                                                <h4 class="solution-title">Career Checkpoints (1, 5, 10 years)</h4>
+                                                <p class="solution-description">Provide targeted support aligned to common career inflection points.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧑‍🏫</div>
+                                                <h4 class="solution-title">Alumni-Led Career Programming</h4>
+                                                <p class="solution-description">Leverage alumni expertise to deliver practical, real-world guidance.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Networking & Mentorship Access -->
+                    <div class="category-panel" data-category-panel="alumni-networking">
+                        <div class="content-card">
+                            <div class="tldr-box">
+                                <span class="tldr-icon">ℹ️</span>
+                                <p class="tldr-text"><strong>TL;DR:</strong> Alumni lack equitable, visible pathways to connect with peers and mentors.</p>
+                            </div>
+                            <div class="card-content">
+                                <blockquote class="quote-block">
+                                    <p class="quote-text">"I know alumni are out there, but I don't know how to reach them."</p>
+                                </blockquote>
+                                <div class="issues-solutions">
+                                    <div class="issues-section">
+                                        <h3 class="section-heading">Core Issues</h3>
+                                        <ul class="issue-list">
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Networking relies on informal personal connections</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Mentorship is inaccessible and unstructured</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Introverts, freelancers, and global alumni are disadvantaged</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="solutions-section">
+                                        <h3 class="section-heading">Actionable Solutions</h3>
+                                        <div class="solutions-grid">
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧭</div>
+                                                <h4 class="solution-title">Searchable Alumni Directory</h4>
+                                                <p class="solution-description">Enable opt-in discovery by discipline, location, and interests.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🔗</div>
+                                                <h4 class="solution-title">Structured Mentor Matching</h4>
+                                                <p class="solution-description">Facilitate clear, low-friction mentor-mentee connections.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">⏱️</div>
+                                                <h4 class="solution-title">Time-Bound Mentorship Formats</h4>
+                                                <p class="solution-description">Reduce commitment barriers with short, defined engagements.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧩</div>
+                                                <h4 class="solution-title">Micro-Network Circles</h4>
+                                                <p class="solution-description">Create small, facilitated peer groups to foster trust and continuity.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">⭐</div>
+                                                <h4 class="solution-title">Mentor Recognition Program</h4>
+                                                <p class="solution-description">Publicly acknowledge alumni who contribute time and guidance. 온라인 레귤러 밋 업</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Disconnection & Fragmentation -->
+                    <div class="category-panel" data-category-panel="alumni-disconnection">
+                        <div class="content-card">
+                            <div class="tldr-box">
+                                <span class="tldr-icon">ℹ️</span>
+                                <p class="tldr-text"><strong>TL;DR:</strong> Alumni want to stay connected but face unclear pathways and fragmented experiences.</p>
+                            </div>
+                            <div class="card-content">
+                                <blockquote class="quote-block">
+                                    <p class="quote-text">"After graduation, ECUAD disappeared from my life."</p>
+                                </blockquote>
+                                <div class="issues-solutions">
+                                    <div class="issues-section">
+                                        <h3 class="section-heading">Core Issues</h3>
+                                        <ul class="issue-list">
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>No clear alumni onboarding journey</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Events and services feel sporadic</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Digital touchpoints are fragmented</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="solutions-section">
+                                        <h3 class="section-heading">Actionable Solutions</h3>
+                                        <div class="solutions-grid">
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧭</div>
+                                                <h4 class="solution-title">Alumni Lifecycle Onboarding</h4>
+                                                <p class="solution-description">Treat graduation as entry into a new, intentional engagement phase.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧱</div>
+                                                <h4 class="solution-title">Single Alumni Front Door</h4>
+                                                <p class="solution-description">Centralize access to all alumni services and information.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🌐</div>
+                                                <h4 class="solution-title">Hybrid Programming by Default</h4>
+                                                <p class="solution-description">Design events to be accessible regardless of location.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧩</div>
+                                                <h4 class="solution-title">Affinity and Identity Groups</h4>
+                                                <p class="solution-description">Support communities built around shared disciplines and lived experiences.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🛠️</div>
+                                                <h4 class="solution-title">Continuous Feedback Loop</h4>
+                                                <p class="solution-description">Regularly gather input to refine and improve alumni offerings.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recognition & Visibility -->
+                    <div class="category-panel" data-category-panel="alumni-recognition">
+                        <div class="content-card">
+                            <div class="tldr-box">
+                                <span class="tldr-icon">ℹ️</span>
+                                <p class="tldr-text"><strong>TL;DR:</strong> Alumni achievements are under-recognized, especially internationally and outside traditional paths.</p>
+                            </div>
+                            <div class="card-content">
+                                <blockquote class="quote-block">
+                                    <p class="quote-text">"I've done a lot since graduating, but there's nowhere to share it. 어떻게 알릴지 모르겠어"</p>
+                                </blockquote>
+                                <div class="issues-solutions">
+                                    <div class="issues-section">
+                                        <h3 class="section-heading">Core Issues</h3>
+                                        <ul class="issue-list">
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>No self-serve way to submit achievements 이거 진짜임?</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Recognition feels selective and ad hoc</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>International success is underrepresented</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="solutions-section">
+                                        <h3 class="section-heading">Actionable Solutions</h3>
+                                        <div class="solutions-grid">
+                                            <div class="solution-card">
+                                                <div class="solution-icon">✍️</div>
+                                                <h4 class="solution-title">Self-Serve Achievement Submission</h4>
+                                                <p class="solution-description">Allow alumni to easily share milestones and accomplishments.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧠</div>
+                                                <h4 class="solution-title">Editorial Curation Layer</h4>
+                                                <p class="solution-description">Actively surface diverse alumni stories through regular features.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🖼️</div>
+                                                <h4 class="solution-title">Alumni Gallery</h4>
+                                                <p class="solution-description">Online gallery showcasing alumni work, exhibitions, and creative projects.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🌐</div>
+                                                <h4 class="solution-title">Global Alumni Spotlight</h4>
+                                                <p class="solution-description">Ensure international and non-traditional careers are visibly celebrated.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🏆</div>
+                                                <h4 class="solution-title">Annual Recognition Framework</h4>
+                                                <p class="solution-description">Establish transparent criteria and consistent recognition cycles.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">📣</div>
+                                                <h4 class="solution-title">Cross-Channel Amplification</h4>
+                                                <p class="solution-description">Share alumni success across web, newsletters, and social platforms.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🎤</div>
+                                                <h4 class="solution-title">Alumni Podcast</h4>
+                                                <p class="solution-description">Podcast series featuring interviews with alumni about their careers and creative journeys.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- One-Size-Fits-All Communication -->
+                    <div class="category-panel" data-category-panel="alumni-communication">
+                        <div class="content-card">
+                            <div class="tldr-box">
+                                <span class="tldr-icon">ℹ️</span>
+                                <p class="tldr-text"><strong>TL;DR:</strong> Generic communication reduces relevance, engagement, and trust.</p>
+                            </div>
+                            <div class="card-content">
+                                <blockquote class="quote-block">
+                                    <p class="quote-text">"The emails don't reflect where I am or what I care about."</p>
+                                </blockquote>
+                                <div class="issues-solutions">
+                                    <div class="issues-section">
+                                        <h3 class="section-heading">Core Issues</h3>
+                                        <ul class="issue-list">
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>No lifecycle or interest-based segmentation</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Domestic and international alumni treated the same  </span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Communication fatigue</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="solutions-section">
+                                        <h3 class="section-heading">Actionable Solutions</h3>
+                                        <div class="solutions-grid">
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧬</div>
+                                                <h4 class="solution-title">Lifecycle-Based Segmentation</h4>
+                                                <p class="solution-description">Tailor messaging based on alumni career stage and needs.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🎯</div>
+                                                <h4 class="solution-title">Interest-Based Subscriptions</h4>
+                                                <p class="solution-description">Empower alumni to control the content they receive.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🌍</div>
+                                                <h4 class="solution-title">Regional and Global Filters</h4>
+                                                <p class="solution-description">Adjust communication by geography and time zone.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">📊</div>
+                                                <h4 class="solution-title">Behaviour-Informed Outreach</h4>
+                                                <p class="solution-description">Use engagement data to refine relevance over time.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧪</div>
+                                                <h4 class="solution-title">Ongoing Testing and Refinement</h4>
+                                                <p class="solution-description">Continuously improve communication through measurement and feedback.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ECUAA Tab Content -->
+                <div class="tab-panel" data-panel="ecuaa">
+                    <!-- Operational Separation -->
+                    <div class="category-panel active" data-category-panel="ecuaa-operational">
+                        <div class="content-card">
+                            <div class="tldr-box">
+                                <span class="tldr-icon">ℹ️</span>
+                                <p class="tldr-text"><strong>TL;DR:</strong> Structural separation limits ECUAA's ability to operate strategically and at scale.</p>
+                            </div>
+                            <div class="card-content">
+                                <blockquote class="quote-block">
+                                    <p class="quote-text">"We operate in isolation."</p>
+                                </blockquote>
+                                <div class="issues-solutions">
+                                    <div class="issues-section">
+                                        <h3 class="section-heading">Core Issues</h3>
+                                        <ul class="issue-list">
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Limited integration with university systems</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Misaligned priorities and timelines</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="solutions-section">
+                                        <h3 class="section-heading">Actionable Solutions</h3>
+                                        <div class="solutions-grid">
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🔗</div>
+                                                <h4 class="solution-title">Formal Partnership Framework</h4>
+                                                <p class="solution-description">Define shared goals, roles, and accountability between ECUAD and ECUAA.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧭</div>
+                                                <h4 class="solution-title">Joint Governance Model</h4>
+                                                <p class="solution-description">Create consistent leadership alignment and decision-making cadence.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧠</div>
+                                                <h4 class="solution-title">Shared Systems and Data Access</h4>
+                                                <p class="solution-description">Enable coordinated planning and communication.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">📅</div>
+                                                <h4 class="solution-title">Annual Joint Planning Cycle</h4>
+                                                <p class="solution-description">Align priorities, programming, and resourcing each year.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🪜</div>
+                                                <h4 class="solution-title">Clear Decision Escalation Paths</h4>
+                                                <p class="solution-description">Reduce friction by clarifying authority and ownership.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- No Budget -->
+                    <div class="category-panel" data-category-panel="ecuaa-budget">
+                        <div class="content-card">
+                            <div class="tldr-box">
+                                <span class="tldr-icon">ℹ️</span>
+                                <p class="tldr-text"><strong>TL;DR:</strong> Volunteer dependency constrains sustainability, scale, and consistency.</p>
+                            </div>
+                            <div class="card-content">
+                                <blockquote class="quote-block">
+                                    <p class="quote-text">"Everything depends on unpaid labour."</p>
+                                </blockquote>
+                                <div class="issues-solutions">
+                                    <div class="issues-section">
+                                        <h3 class="section-heading">Core Issues</h3>
+                                        <ul class="issue-list">
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Burnout risk</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Inability to plan long-term</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="solutions-section">
+                                        <h3 class="section-heading">Actionable Solutions</h3>
+                                        <div class="solutions-grid">
+                                            <div class="solution-card">
+                                                <div class="solution-icon">💼</div>
+                                                <h4 class="solution-title">Baseline Operating Budget</h4>
+                                                <p class="solution-description">Secure minimal funding to ensure continuity and reliability.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧮</div>
+                                                <h4 class="solution-title">Good / Better / Best Scenarios</h4>
+                                                <p class="solution-description">Show leadership how outcomes scale with investment.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🛠️</div>
+                                                <h4 class="solution-title">Shared Services Model</h4>
+                                                <p class="solution-description">Leverage existing university infrastructure to reduce duplication.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">📊</div>
+                                                <h4 class="solution-title">ROI Framing for Leadership</h4>
+                                                <p class="solution-description">Connect alumni investment to institutional outcomes.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧑‍💻</div>
+                                                <h4 class="solution-title">Dedicated Staff Liaison</h4>
+                                                <p class="solution-description">Provide operational support to reduce volunteer burden.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sponsorship Challenges -->
+                    <div class="category-panel" data-category-panel="ecuaa-sponsorship">
+                        <div class="content-card">
+                            <div class="tldr-box">
+                                <span class="tldr-icon">ℹ️</span>
+                                <p class="tldr-text"><strong>TL;DR:</strong> Sponsorship efforts are fragmented and inefficient without institutional support.</p>
+                            </div>
+                            <div class="card-content">
+                                <blockquote class="quote-block">
+                                    <p class="quote-text">"Every event feels like starting from zero."</p>
+                                </blockquote>
+                                <div class="issues-solutions">
+                                    <div class="issues-section">
+                                        <h3 class="section-heading">Core Issues</h3>
+                                        <ul class="issue-list">
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>No centralized strategy</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Limited leverage</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="solutions-section">
+                                        <h3 class="section-heading">Actionable Solutions</h3>
+                                        <div class="solutions-grid">
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🤝</div>
+                                                <h4 class="solution-title">Centralized Sponsorship Framework</h4>
+                                                <p class="solution-description">Standardize packages aligned with ECUAD's values and goals.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧱</div>
+                                                <h4 class="solution-title">Multi-Year Partnerships</h4>
+                                                <p class="solution-description">Build sustained relationships rather than one-off transactions.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🎨</div>
+                                                <h4 class="solution-title">Creative-Sector Alignment</h4>
+                                                <p class="solution-description">Focus on partners aligned with art, design, and media industries.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">📘</div>
+                                                <h4 class="solution-title">Sponsor Value Playbook</h4>
+                                                <p class="solution-description">Clearly articulate sponsor benefits beyond logo placement.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🧩</div>
+                                                <h4 class="solution-title">Integrated Programming</h4>
+                                                <p class="solution-description">Tie sponsorships to broader alumni initiatives for greater impact.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Limited Visibility into Alumni Outcomes (Domestic & International) -->
+                    <div class="category-panel" data-category-panel="ecuaa-visibility">
+                        <div class="content-card">
+                            <div class="tldr-box">
+                                <span class="tldr-icon">ℹ️</span>
+                                <p class="tldr-text"><strong>TL;DR:</strong> ECUAA lacks reliable data to tell a compelling alumni impact story.</p>
+                            </div>
+                            <div class="card-content">
+                                <blockquote class="quote-block">
+                                    <p class="quote-text">"We know alumni are succeeding globally, but we can't track it."</p>
+                                </blockquote>
+                                <div class="issues-solutions">
+                                    <div class="issues-section">
+                                        <h3 class="section-heading">Core Issues</h3>
+                                        <ul class="issue-list">
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>Fragmented or outdated data</span>
+                                            </li>
+                                            <li class="issue-item">
+                                                <span class="bullet bullet-primary"></span>
+                                                <span>International outcomes underreported</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="solutions-section">
+                                        <h3 class="section-heading">Actionable Solutions</h3>
+                                        <div class="solutions-grid">
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🗃️</div>
+                                                <h4 class="solution-title">Shared Alumni Data Infrastructure</h4>
+                                                <p class="solution-description">Align data systems between ECUAD and ECUAA.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🌐</div>
+                                                <h4 class="solution-title">Global Outcome Tracking Framework</h4>
+                                                <p class="solution-description">Capture diverse alumni career paths and achievements.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🔁</div>
+                                                <h4 class="solution-title">Regular Data Refresh Cycles</h4>
+                                                <p class="solution-description">Update alumni records through periodic outreach.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">📈</div>
+                                                <h4 class="solution-title">Outcome Dashboards</h4>
+                                                <p class="solution-description">Provide leadership with clear, aggregated insights.</p>
+                                            </div>
+                                            <div class="solution-card">
+                                                <div class="solution-icon">🤝</div>
+                                                <h4 class="solution-title">Data Governance Agreement</h4>
+                                                <p class="solution-description">Define ownership, privacy, and appropriate data use.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- Lifecycle Engagement Model Section -->
+            <section id="lifecycle" class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Lifecycle Engagement Model</h2>
+                    <p class="hero-description">Alumni engagement is not static. This lifecycle model aligns services and value to how creative careers actually unfold over time.</p>
+                    <div class="why-matters">
+                        <h4 class="why-matters-heading">Why this matters</h4>
+                        <ul class="why-matters-list">
+                            <li class="why-matters-item">
+                                <span class="bullet bullet-primary"></span>
+                                <span>Grounds engagement in real career stages</span>
+                            </li>
+                            <li class="why-matters-item">
+                                <span class="bullet bullet-primary"></span>
+                                <span>Strengthens equity and long-term belonging</span>
+                            </li>
+                            <li class="why-matters-item">
+                                <span class="bullet bullet-primary"></span>
+                                <span>Creates clearer progression to leadership and philanthropy</span>
+                            </li>
+                            <li class="why-matters-item">
+                                <span class="bullet bullet-primary"></span>
+                                <span>Enables more intentional systems, staffing, and investment</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <div class="stage-tabs">
+                        <button class="stage-tab active" data-stage="student" aria-selected="true">
+                            <span class="stage-tab-title">Graduation</span>
+                            <span class="stage-tab-subhead">Transition (0-2 years)</span>
+                        </button>
+                        <button class="stage-tab" data-stage="newgrad" aria-selected="false">
+                            <span class="stage-tab-title">Early Career</span>
+                            <span class="stage-tab-subhead">Establishment (2-10 years)</span>
+                        </button>
+                        <button class="stage-tab" data-stage="established" aria-selected="false">
+                            <span class="stage-tab-title">Mid-Career</span>
+                            <span class="stage-tab-subhead">Expansion (10-25 years)</span>
+                        </button>
+                        <button class="stage-tab" data-stage="legacy" aria-selected="false">
+                            <span class="stage-tab-title">Legacy</span>
+                            <span class="stage-tab-subhead">Leadership (25+ years)</span>
+                        </button>
+                    </div>
+
+                    <!-- 01. Student Stage -->
+                    <div class="stage-panel active" data-stage-panel="student">
+                        <div class="tldr-box">
+                            <span class="tldr-icon">💡</span>
+                            <p class="tldr-text"><strong>TL;DR:</strong> Alumni need survival support, orientation, and reassurance that they still belong.</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="needs-grid">
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Early Transition Realities</h3>
+                                    <ul class="needs-list">
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Abrupt shift from structured academic environment to uncertain professional reality</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>High anxiety around employment, income stability, and identity as a creative</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Weak handoff from student services to alumni support</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Primary Needs</h3>
+                                    <ul class="needs-list">
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Career navigation and early job access</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Mentorship from near-peers</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Emotional reassurance and belonging</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Clear understanding of "what alumni get"</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Our Value Proposition (Offer)</h3>
+                                    <div class="solutions-grid">
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🎓</div>
+                                            <h4 class="solution-title">Alumni Onboarding Program</h4>
+                                            <p class="solution-description">A structured transition from student to alumni, starting before graduation.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🚀</div>
+                                            <h4 class="solution-title">Early-Career Career Launchpad</h4>
+                                            <p class="solution-description">Access to job boards, portfolio reviews, and practical career guidance.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🤝</div>
+                                            <h4 class="solution-title">Near-Peer Mentorship</h4>
+                                            <p class="solution-description">Connect recent grads with alumni 2–5 years ahead.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🌐</div>
+                                            <h4 class="solution-title">Community Continuity</h4>
+                                            <p class="solution-description">Maintain studio culture and peer connection beyond graduation.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">📣</div>
+                                            <h4 class="solution-title">Value-First Communications</h4>
+                                            <p class="solution-description">Lead with support, not fundraising.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Success Metrics</h3>
+                                    <ul class="needs-list">
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Alumni opt-in rate within first 6 months</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Participation in onboarding and career programs</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Early engagement and email open rates</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Self-reported confidence in career transition</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 02. New Grad Stage -->
+                    <div class="stage-panel" data-stage-panel="newgrad">
+                        <div class="tldr-box">
+                            <span class="tldr-icon">💡</span>
+                            <p class="tldr-text"><strong>TL;DR:</strong> Alumni seek momentum, credibility, and networks that help them establish themselves.</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="needs-grid">
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Career Stabilization Challenges</h3>
+                                    <ul class="needs-list">
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Navigating unstable or freelance-heavy careers</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Building reputation, portfolio depth, and income consistency</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Often balancing survival work with creative ambition</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Primary Needs</h3>
+                                    <ul class="needs-list">
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Networking and peer visibility</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Mentorship and industry insight</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Career progression opportunities</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Recognition and validation</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Our Value Proposition (Offer)</h3>
+                                    <div class="solutions-grid">
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🧭</div>
+                                            <h4 class="solution-title">Alumni Networking & Micro-Communities</h4>
+                                            <p class="solution-description">Discipline-based and interest-based peer groups.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🔗</div>
+                                            <h4 class="solution-title">Structured Mentorship Access</h4>
+                                            <p class="solution-description">Time-bound mentorship and portfolio feedback.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🧵</div>
+                                            <h4 class="solution-title">Industry Micro-Networks</h4>
+                                            <p class="solution-description">Connections to sector-specific opportunities.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">✍️</div>
+                                            <h4 class="solution-title">Achievement Visibility Pathways</h4>
+                                            <p class="solution-description">Easy ways to share milestones and be recognized.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🌍</div>
+                                            <h4 class="solution-title">Global Alumni Job & Opportunity Board</h4>
+                                            <p class="solution-description">Roles, gigs, residencies, and grants.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Success Metrics</h3>
+                                    <ul class="needs-list">
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Growth of alumni network participation</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Mentorship match completion rates</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Job and opportunity postings engagement</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Alumni-submitted achievements</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 03. Established Stage -->
+                    <div class="stage-panel" data-stage-panel="established">
+                        <div class="tldr-box">
+                            <span class="tldr-icon">💡</span>
+                            <p class="tldr-text"><strong>TL;DR:</strong> Alumni want relevance, leadership opportunities, and ways to give back without high friction.</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="needs-grid">
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Momentum & Capacity Constraints</h3>
+                                    <ul class="needs-list">
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Career stabilization and seniority</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Increased influence, but limited time</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Desire for purpose, recognition, and impact</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Primary Needs</h3>
+                                    <ul class="needs-list">
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Leadership and visibility</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Selective, high-quality engagement</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Opportunities to mentor or advocate</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Continued learning and relevance</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Our Value Proposition (Offer)</h3>
+                                    <div class="solutions-grid">
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🏆</div>
+                                            <h4 class="solution-title">Alumni Recognition &amp; Spotlights</h4>
+                                            <p class="solution-description">Celebrate impact across industries and geographies.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🧑‍🏫</div>
+                                            <h4 class="solution-title">Mentorship &amp; Teaching Opportunities</h4>
+                                            <p class="solution-description">Guest lectures, critiques, and advisory roles.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🧠</div>
+                                            <h4 class="solution-title">Lifelong Learning Access</h4>
+                                            <p class="solution-description">Talks, workshops, and executive-style programming.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🤝</div>
+                                            <h4 class="solution-title">Strategic Networking Opportunities</h4>
+                                            <p class="solution-description">Curated events rather than high-volume programming.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🎯</div>
+                                            <h4 class="solution-title">Purpose-Driven Giving Paths</h4>
+                                            <p class="solution-description">Clear, values-aligned ways to support students and programs.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Success Metrics</h3>
+                                    <ul class="needs-list">
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Participation in leadership and mentorship roles</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Engagement with recognition programs</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Event attendance quality (not volume)</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Mid-career alumni retention rates</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 04. Legacy & Donor Stage -->
+                    <div class="stage-panel" data-stage-panel="legacy">
+                        <div class="tldr-box">
+                            <span class="tldr-icon">💡</span>
+                            <p class="tldr-text"><strong>TL;DR:</strong> Alumni seek legacy, stewardship, and meaningful institutional impact.</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="needs-grid">
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Stewardship & Influence Context</h3>
+                                    <ul class="needs-list">
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Career peak or transition toward legacy roles</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Increased interest in giving back and shaping the future</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Desire for trust, respect, and meaningful recognition</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Primary Needs</h3>
+                                    <ul class="needs-list">
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Institutional connection and influence</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Legacy recognition</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>High-trust engagement</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Clear impact pathways</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Our Value Proposition (Offer)</h3>
+                                    <div class="solutions-grid">
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🏛️</div>
+                                            <h4 class="solution-title">Legacy & Stewardship Programs</h4>
+                                            <p class="solution-description">Advisory councils, boards, and named initiatives.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🎓</div>
+                                            <h4 class="solution-title">Endowed Support & Scholarships</h4>
+                                            <p class="solution-description">Transparent, values-aligned giving opportunities.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">📜</div>
+                                            <h4 class="solution-title">Legacy Recognition Frameworks</h4>
+                                            <p class="solution-description">Honouring long-term contribution and impact.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🧭</div>
+                                            <h4 class="solution-title">Strategic Advisory Roles</h4>
+                                            <p class="solution-description">Engage alumni expertise in institutional planning.</p>
+                                        </div>
+                                        <div class="solution-card">
+                                            <div class="solution-icon">🤝</div>
+                                            <h4 class="solution-title">High-Touch Relationship Management</h4>
+                                            <p class="solution-description">Personalized, trust-based engagement.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="needs-column">
+                                    <h3 class="needs-heading">Success Metrics</h3>
+                                    <ul class="needs-list">
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Long-term engagement and retention</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Participation in advisory and governance roles</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Sustained philanthropic support</span>
+                                        </li>
+                                        <li class="needs-item">
+                                            <span class="bullet bullet-primary"></span>
+                                            <span>Alumni satisfaction and trust indicators</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
-
-    <section class="frustration-section" id="frustration">
-        <div class="container">
-            <h2>1. The Frustration Landscape</h2>
-            <p class="intro">Breakdown of primary complaints from I've been hearing. Click the list items to explore the qualitative feedback behind the numbers.</p>
-            
-            <div class="tab-buttons">
-                <button class="tab-btn active" data-tab="solicitation">💰 Solicitation</button>
-                <button class="tab-btn" data-tab="career">💼 Career Support</button>
-                <button class="tab-btn" data-tab="communication">📢 Communication</button>
-                <button class="tab-btn" data-tab="networking">🤝 Networking</button>
-                <button class="tab-btn" data-tab="ux">⚙️ UX/Process</button>
-            </div>
-
-            <div class="tab-content active" id="solicitation">
-                <h3>Solicitation Fatigue</h3>
-                <blockquote>"Every email feels like it's asking for money before offering any value."</blockquote>
-                <h4>Core Issues</h4>
-                <ul>
-                    <li>Donation requests sent too frequently</li>
-                    <li>Lack of transparency on fund allocation</li>
-                    <li>No clear value proposition for donors</li>
-                </ul>
-            </div>
-
-            <div class="tab-content" id="career">
-                <h3>Career Support Gaps</h3>
-                <blockquote>"I graduated years ago and still haven't received any meaningful career resources."</blockquote>
-                <h4>Core Issues</h4>
-                <ul>
-                    <li>No job board or industry connections</li>
-                    <li>Mentorship programs are non-existent</li>
-                    <li>Skills workshops not offered post-graduation</li>
-                </ul>
-            </div>
-
-            <div class="tab-content" id="communication">
-                <h3>Communication Breakdown</h3>
-                <blockquote>"I don't know what's happening at ECU unless I actively search for it."</blockquote>
-                <h4>Core Issues</h4>
-                <ul>
-                    <li>Newsletters feel generic and impersonal</li>
-                    <li>Important updates buried in noise</li>
-                    <li>No segmentation based on interests</li>
-                </ul>
-            </div>
-
-            <div class="tab-content" id="networking">
-                <h3>Networking Void</h3>
-                <blockquote>"There's no easy way to connect with other alumni in my field."</blockquote>
-                <h4>Core Issues</h4>
-                <ul>
-                    <li>No alumni directory or platform</li>
-                    <li>Events are rare and poorly promoted</li>
-                    <li>Regional chapters don't exist</li>
-                </ul>
-            </div>
-
-            <div class="tab-content" id="ux">
-                <h3>UX/Process Friction</h3>
-                <blockquote>"The website is confusing and I can never find what I need."</blockquote>
-                <h4>Core Issues</h4>
-                <ul>
-                    <li>Outdated and clunky website interface</li>
-                    <li>Multiple logins required for different services</li>
-                    <li>Forms are lengthy and redundant</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="solutions-section" id="solutions">
-        <div class="container">
-            <h2>2. Strategic Solutions Hub</h2>
-            <p class="intro">Select a complaint category below to reveal specific, actionable solutions to address the root causes of disengagement.</p>
-            
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All Solutions</button>
-                <button class="filter-btn" data-filter="money">💰 Fundraising</button>
-                <button class="filter-btn" data-filter="career">💼 Career Services</button>
-                <button class="filter-btn" data-filter="comms">📢 Communication</button>
-                <button class="filter-btn" data-filter="network">🤝 Networking</button>
-            </div>
-
-            <div class="solutions-grid" id="solutions-grid">
-                <!-- Cards injected by JS -->
-            </div>
-        </div>
-    </section>
-
-    <section class="lifecycle-section" id="lifecycle">
-        <div class="container">
-            <h2>3. The New Engagement Lifecycle</h2>
-            <p class="intro">Moving away from a "one-size-fits-all" approach, we propose a tailored value proposition that evolves with the alumni's career journey. Click the stages below to see how ECUAD serves alumni at each step.</p>
-            
-            <div class="lifecycle-steps">
-                <button class="lifecycle-step active" data-step="0">
-                    <div class="step-title">Graduation</div>
-                    <div class="step-subtitle">Transition (0-2 Yrs)</div>
-                </button>
-                <button class="lifecycle-step" data-step="1">
-                    <div class="step-title">Early Career</div>
-                    <div class="step-subtitle">Establishment (2-10 Yrs)</div>
-                </button>
-                <button class="lifecycle-step" data-step="2">
-                    <div class="step-title">Mid-Career</div>
-                    <div class="step-subtitle">Expansion (10-25 Yrs)</div>
-                </button>
-                <button class="lifecycle-step" data-step="3">
-                    <div class="step-title">Legacy</div>
-                    <div class="step-subtitle">Leadership (25+ Yrs)</div>
-                </button>
-            </div>
-
-            <div class="lifecycle-content" id="lifecycle-content">
-                <!-- Populated by JS -->
-            </div>
-        </div>
-    </section>
     </main>
 
-    <script>
-        // Side navigation toggle
-        const hamburger = document.getElementById('hamburger');
-        const sideNav = document.getElementById('side-nav');
-        const navOverlay = document.getElementById('nav-overlay');
 
-        function toggleNav() {
-            hamburger.classList.toggle('open');
-            sideNav.classList.toggle('open');
-            navOverlay.classList.toggle('open');
-        }
-
-        hamburger.addEventListener('click', toggleNav);
-        navOverlay.addEventListener('click', toggleNav);
-
-        // Close nav on link click (mobile) and set active state
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-                if (window.innerWidth < 992) {
-                    toggleNav();
-                }
-            });
-        });
-
-        // Tab switching for frustration section
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                btn.classList.add('active');
-                document.getElementById(btn.dataset.tab).classList.add('active');
-            });
-        });
-
-        // Solutions data
-        const solutionsData = [
-            { category: "money", title: "The 3-to-1 Rule", desc: "Commit to sending 3 value-add emails (news, invites, stories) for every 1 solicitation email." },
-            { category: "money", title: "Impact Reporting", desc: "Show exactly where the money goes. 'Your $50 bought 10 lab coats' vs 'Support the Annual Fund'." },
-            { category: "career", title: "Lifetime Career Access", desc: "Extend career center privileges to alumni for life, or at least 5-10 years post-grad." },
-            { category: "career", title: "Alumni Job Board", desc: "Curate a job board where alumni can hire other alumni. High trust, high relevance." },
-            { category: "comms", title: "Smart Segmentation", desc: "Segment lists by Grad Year, Major, and Interest. Send tech news to Engineering grads, not English grads." },
-            { category: "comms", title: "Opt-Down Options", desc: "Allow users to choose 'Newsletter Only' or 'Events Only' instead of a global Unsubscribe." },
-            { category: "network", title: "Industry Verticals", desc: "Create micro-communities (e.g., 'Alumni in Finance', 'Alumni in Arts') rather than generic regional clubs." },
-            { category: "network", title: "Structured Networking", desc: "Host 'Speed Networking' or guided roundtable events so introverts can participate easily." },
-            { category: "money", title: "Micro-Giving Days", desc: "Focus on participation over amount. 'Buy a coffee for a student' campaigns ($5) to build habits." }
-        ];
-
-        const categoryLabels = {
-            money: "Fundraising",
-            career: "Career Services",
-            comms: "Communication",
-            network: "Networking"
-        };
-
-        // Render solutions
-        function renderSolutions() {
-            const grid = document.getElementById('solutions-grid');
-            grid.innerHTML = solutionsData.map(item => `
-                <div class="solution-card" data-category="${item.category}">
-                    <span class="category-tag">${categoryLabels[item.category]}</span>
-                    <h3>${item.title}</h3>
-                    <p>${item.desc}</p>
-                </div>
-            `).join('');
-        }
-
-        // Filter solutions
-        function filterSolutions(category) {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.filter === category);
-            });
-
-            document.querySelectorAll('.solution-card').forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        }
-
-        // Filter button clicks
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => filterSolutions(btn.dataset.filter));
-        });
-
-        // Initialize
-        renderSolutions();
-
-        // Lifecycle data
-        const lifecycleData = [
-            {
-                stage: "Graduation (0-2 Years)",
-                focus: "Transition & Survival",
-                goal: "Bridge the gap between studio and industry.",
-                needs: ["Portfolio review", "Contract negotiation skills", "Access to software/facilities"],
-                offer: "Provide 'Alumni Bootcamp' workshops and 1-year extended Library access.",
-                kpi: "Email update rate: 80%"
-            },
-            {
-                stage: "Early Career (2-10 Years)",
-                focus: "Establishment & Gigs",
-                goal: "Help them secure work and build reputation.",
-                needs: ["Job board access", "Grant writing support", "Exhibition opportunities"],
-                offer: "Curated 'Creative Careers' newsletter and 'ECUAD Connects' mixer events.",
-                kpi: "Event attendance: 300/yr"
-            },
-            {
-                stage: "Mid-Career (10-25 Years)",
-                focus: "Expansion & Hiring",
-                goal: "Engage them as partners and employers.",
-                needs: ["Talent pipeline (hiring grads)", "Professional development", "Re-skilling"],
-                offer: "Exclusive masterclasses and 'Hire a Grad' portal access.",
-                kpi: "Mentorship signups: 50"
-            },
-            {
-                stage: "Legacy (25+ Years)",
-                focus: "Leadership & Giving",
-                goal: "Cement their legacy within the institution.",
-                needs: ["Recognition of lifetime achievement", "Philanthropic avenues", "Board roles"],
-                offer: "VIP Gallery previews, Honorary Fellowships, Named Scholarships.",
-                kpi: "Major gifts identified: 5"
-            }
-        ];
-
-        // Render lifecycle content
-        function renderLifecycle(index) {
-            const data = lifecycleData[index];
-            const needsList = data.needs.map(n => `<li>${n}</li>`).join('');
-            const content = document.getElementById('lifecycle-content');
-            content.innerHTML = `
-                <div class="lifecycle-layout">
-                    <div class="lifecycle-main">
-                        <div class="content-header">
-                            <div class="stage-title">${data.stage}</div>
-                            <div class="stage-focus">${data.focus}</div>
-                            <div class="stage-goal">${data.goal}</div>
-                        </div>
-                        <div class="lifecycle-left">
-                            <div class="needs-label">Primary Needs</div>
-                            <ul>${needsList}</ul>
-                        </div>
-                    </div>
-                    <div class="lifecycle-right">
-                        <div class="offer-label">Our Value Prop (Offer)</div>
-                        <div class="offer-value">${data.offer}</div>
-                        <div class="kpi-label">Success Metric</div>
-                        <div class="kpi-value">${data.kpi}</div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Lifecycle step clicks
-        document.querySelectorAll('.lifecycle-step').forEach(step => {
-            step.addEventListener('click', () => {
-                document.querySelectorAll('.lifecycle-step').forEach(s => s.classList.remove('active'));
-                step.classList.add('active');
-                renderLifecycle(parseInt(step.dataset.step));
-            });
-        });
-
-        // Initialize lifecycle
-        renderLifecycle(0);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
-
-
