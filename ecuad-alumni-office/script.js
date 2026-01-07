@@ -176,7 +176,7 @@
 
         // Update active nav link based on scroll position
         function updateActiveNavOnScroll() {
-            const sections = document.querySelectorAll('#voice, #lifecycle');
+            const sections = document.querySelectorAll('#hero, #core-signals, #why-matters, #voice, #lifecycle, #enablers');
             const headerOffset = window.innerWidth < 1024 ? 100 : 150;
             let currentSection = '';
 
@@ -386,6 +386,28 @@
             const targetStagePanel = document.querySelector(`.stage-panel[data-stage-panel="${targetStage}"]`);
             if (targetStagePanel) {
                 targetStagePanel.classList.add('active');
+            }
+        });
+    });
+
+    // Accordion Functionality
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+            const accordionItem = this.closest('.accordion-item');
+            const accordionContent = accordionItem.querySelector('.accordion-content');
+            const isActive = this.classList.contains('active');
+            
+            // Toggle only the clicked item
+            if (isActive) {
+                accordionContent.classList.remove('active');
+                this.classList.remove('active');
+                this.setAttribute('aria-expanded', 'false');
+            } else {
+                accordionContent.classList.add('active');
+                this.classList.add('active');
+                this.setAttribute('aria-expanded', 'true');
             }
         });
     });
