@@ -1,0 +1,368 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Dark mode color palette with glassmorphism */
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --border-color-light: rgba(255, 255, 255, 0.2);
+    --text-primary: #f0f6fc;
+    --text-secondary: #c9d1d9;
+    --accent-color: #58a6ff;
+    --accent-hover: #79c0ff;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-bg-light: rgba(255, 255, 255, 0.08);
+}
+
+body {
+    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0d1117 0%, #1a1a2e 50%, #16213e 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 2rem 1rem 0 1rem;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-link {
+    display: block;
+    margin: 0 auto 2rem auto;
+    width: fit-content;
+    transition: opacity 0.2s;
+}
+
+.logo-link:hover {
+    opacity: 0.8;
+}
+
+.page-logo {
+    display: block;
+    height: 37px;
+    width: auto;
+    max-width: 100%;
+}
+
+/* Section Styles */
+.allocation-section {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border-color-light);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.allocation-section + .allocation-section {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 2rem;
+    font-weight: 200;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+/* Input Group */
+.input-group {
+    margin-bottom: 2rem;
+}
+
+.input-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.input-with-prefix {
+    position: relative;
+    display: inline-block;
+    max-width: 300px;
+}
+
+.input-prefix {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.total-input {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.25rem;
+    width: 100%;
+    max-width: 300px;
+    padding: 0.75rem 1rem 0.75rem 1.5rem;
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.input-with-prefix .total-input {
+    max-width: 100%;
+}
+
+.total-input:hover {
+    border-color: var(--accent-hover);
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.total-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 16px 0 rgba(88, 166, 255, 0.3);
+}
+
+/* Hide spinner controls (up/down arrows) for number inputs */
+.total-input::-webkit-inner-spin-button,
+.total-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.total-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Assets Grid */
+.assets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Asset Card */
+.asset-card {
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.25);
+}
+
+.asset-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.asset-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.asset-name {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: text-decoration 0.2s;
+}
+
+.asset-name:hover {
+    text-decoration: underline;
+}
+
+.asset-type {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Asset Controls */
+.asset-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.percent-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.percent-select {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    padding: 0.625rem 2.5rem 0.625rem 0.75rem;
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23f0f6fc' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 12px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.percent-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 2px 12px 0 rgba(88, 166, 255, 0.25);
+}
+
+.percent-select:hover {
+    border-color: var(--accent-hover);
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Asset Amount */
+.asset-amount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.amount-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.amount-value {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+/* Total Display */
+.total-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-top: 1rem;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.total-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.total-percent {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Page Footer */
+.page-footer {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.page-footer p {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem 0.5rem 0 0.5rem;
+    }
+    
+    .logo-link {
+        margin-bottom: 1.5rem;
+    }
+    
+    .page-logo {
+        height: 30px;
+    }
+    
+    .allocation-section {
+        padding: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .assets-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .total-input {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-logo {
+        height: 26px;
+    }
+    
+    .section-title {
+        font-size: 1.25rem;
+    }
+    
+    .asset-card {
+        padding: 1rem;
+    }
+}
